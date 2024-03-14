@@ -21,7 +21,22 @@ body{
     color: #9ca3af;
 
 }
-
+.form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-control {
+    flex-grow: 1; /* Ensures that the input field takes up the remaining space */
+  }
+  
+  .btn-primary {
+    margin-left: 8px; /* Adds some space between the input field and the button */
+  }
+  
+  .left-pan {
+    margin-left: 8px; /* Adds some space to the left of the microphone icon if needed */
+  }
 .form span{
 
         position: absolute;

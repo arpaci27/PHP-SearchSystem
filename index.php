@@ -1,3 +1,7 @@
+<?php
+include 'conf/dbconfig.php';
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,17 +17,43 @@
 
   <div class="col-md-6">
 
-    <div class="form">
-      <i class="fa fa-search"></i>
-      <input type="text" class="form-control form-input" placeholder="Search anything...">
-      <span class="left-pan"><i class="fa fa-microphone"></i></span>
-    </div>
+  <div class="form">
+    <i class="fa fa-search"></i>
+    <input type="text"name="search" class="form-control form-input my-5" placeholder="Search anything...">
+    <button type="submit" name="submit" class="btn btn-dark">Search</button>
+</div>
     
   </div>
   
 </div>
 
-</div></div>
+</div>
+<div class="container">
+    <table class="table table-bordered">
+        <?php 
+        $search="";
+        
+
+        if(isset($_POST['submit'])){ $search = $_POST['search'];
+            $sorgu = $baglanti->prepare("SELECT * FROM users Where ID='$search' or Name='$search' or Surname='$search' or Email='$search'");
+            $sorgu -> execute();
+            $sonuc = $sorgu->fetch();
+           
+            
+        if($sonuc){
+            echo "Arama sonuçları: "
+            ;
+        echo "<tr><td>".$sonuc['ID']."</td><td>".$sonuc['Name']."</td><td>".$sonuc['Surname']."</td><td>".$sonuc['Email']."</td></tr>";}
+        else{
+                echo "Arama sonucu bulunamadı...";
+            }
+        }
+        
+        ?>
+    </table>
+</div>
+
+</div>
   
     
 
