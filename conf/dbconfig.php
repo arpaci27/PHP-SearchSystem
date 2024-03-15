@@ -13,5 +13,4 @@ $baglanti = new mysqli($host, $username, $password, $dbname, $port);
 if ($baglanti->connect_error) {
     die("Connection failed: " . $baglanti->connect_error);
 }
-echo "Database connection successful!";
 ?>

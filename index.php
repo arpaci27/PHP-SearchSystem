@@ -16,13 +16,13 @@ include 'conf/dbconfig.php';
 <div class="row height d-flex justify-content-center align-items-center">
 
   <div class="col-md-6">
-
+<form method="POST">
   <div class="form">
     <i class="fa fa-search"></i>
     <input type="text"name="search" class="form-control form-input my-5" placeholder="Search anything...">
     <button type="submit" name="submit" class="btn btn-dark">Search</button>
 </div>
-    
+</form>
   </div>
   
 </div>
@@ -30,24 +30,25 @@ include 'conf/dbconfig.php';
 </div>
 <div class="container">
     <table class="table table-bordered">
-        <?php 
-        $search="";
-        
+    <?php 
         if(isset($_POST['submit'])){
-            $search = $_POST['search'];
-            $sql = "SELECT * FROM search WHERE title LIKE '%$search%' OR content LIKE '%$search%'";
-            $result = mysqli_query($baglanti, $sql);
-            if($result){
-               if(mysqli_num_rows($result)>0){
-                   while($row = mysqli_fetch_assoc($result)){
-                       echo "<tr>";
-                       echo "<td>".$row['title']."</td>";
-                       echo "<td>".$row['content']."</td>";
-                       echo "</tr>";
-                   }}
+            $search = $baglanti->real_escape_string($_POST['search']);
+            $sql = "SELECT * FROM users WHERE ID=? OR Name=? OR Surname=?";
+            $stmt = $baglanti->prepare($sql);
+            $stmt->bind_param("sss", $search, $search, $search); // 'sss' means three strings
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if($result->num_rows > 0){
+                while($row = $result->fetch_assoc()){
+                    echo "<tr><td>{$row['ID']}</td><td>{$row['Name']}</td><td>{$row['Surname']}</td></tr>";
+                }
+            } else {
+                echo "<tr><td colspan='3'>No results found</td></tr>";
             }
-           }
-        ?>
+        }
+        ?><td></td>
+        <td></td>
+        <td></td>
     </table>
 </div>
 
