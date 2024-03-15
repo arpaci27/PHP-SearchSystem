@@ -16,7 +16,5 @@ This repository contains a simple implementation of a search box using PHP. It i
 - MySQL Database
 - Web server (e.g., Apache, Nginx)
 
-### Setup
 
-1. Clone the repository to your local machine or web server document root.
 
