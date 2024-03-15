@@ -33,22 +33,20 @@ include 'conf/dbconfig.php';
         <?php 
         $search="";
         
-
-        if(isset($_POST['submit'])){ $search = $_POST['search'];
-            $sorgu = $baglanti->prepare("SELECT * FROM users Where ID='$search' or Name='$search' or Surname='$search' or Email='$search'");
-            $sorgu -> execute();
-            $sonuc = $sorgu->fetch();
-           
-            
-        if($sonuc){
-            echo "Arama sonuçları: "
-            ;
-        echo "<tr><td>".$sonuc['ID']."</td><td>".$sonuc['Name']."</td><td>".$sonuc['Surname']."</td><td>".$sonuc['Email']."</td></tr>";}
-        else{
-                echo "Arama sonucu bulunamadı...";
+        if(isset($_POST['submit'])){
+            $search = $_POST['search'];
+            $sql = "SELECT * FROM search WHERE title LIKE '%$search%' OR content LIKE '%$search%'";
+            $result = mysqli_query($baglanti, $sql);
+            if($result){
+               if(mysqli_num_rows($result)>0){
+                   while($row = mysqli_fetch_assoc($result)){
+                       echo "<tr>";
+                       echo "<td>".$row['title']."</td>";
+                       echo "<td>".$row['content']."</td>";
+                       echo "</tr>";
+                   }}
             }
-        }
-        
+           }
         ?>
     </table>
 </div>
