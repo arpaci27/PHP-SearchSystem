@@ -1,20 +1,12 @@
 # Sample Search Box in PHP
 
-This repository contains a simple implementation of a search box using PHP. It is designed to demonstrate the basics of creating a searchable interface within a web application. The project uses a MySQL database to store sample data that can be queried through the search box.
+This repository contains a simple yet effective implementation of a search box using PHP. It demonstrates how to create a search feature within a web application that queries a MySQL database.
+
+![Search Box Screenshot](ss.png)
 
 ## Features
 
-- Simple PHP script for handling search queries.
-- Integration with a MySQL database.
-- Basic HTML and CSS for the search box interface.
-
-## Installation
-
-### Prerequisites
-
-- PHP 7.4 or higher
-- MySQL Database
-- Web server (e.g., Apache, Nginx)
-
-
+- Simple PHP script to handle search queries.
+- MySQL database integration for storing and querying data.
+- Clean and minimalistic front-end design for the search box.
 
